@@ -71,6 +71,10 @@ int main(int argc, char *argv[]) {
         std::cout << *(V+i) << ' ';
     std::cout << "], Size = " << arrSz << "\n\n";
 
+    // bsearch wrapper example
+    long int to_search = 10;
+    std::cout << wrapper_std_bsearch(V, to_search, 0, arrSz-1) << std::endl;
+
     delete[] V;
 
     return EXIT_SUCCESS;
