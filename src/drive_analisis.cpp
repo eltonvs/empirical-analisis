@@ -1,23 +1,19 @@
 // Copyright - 2016
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <random>
-#include <vector>
-#include <string>
-#include <chrono>
-#include <algorithm>
-#include <functional>
-#include <limits>
+#include <iostream>   // To input/output
+#include <fstream>    // To files i/o
+#include <sstream>    // To convert args
+#include <random>     // To generate random numbers
+#include <chrono>     // To time measurement
+#include <algorithm>  // To std:: search and std::bsearch
 
 #include "search.h"
 
 //
 // Constant expressions.
 //
-constexpr auto N_DEFAULT(20u);  // Default number of elements.
-constexpr auto N_MAX(31u);     // Max number of elements in the array.
+constexpr auto N_DEFAULT(20u);  // Default number of elements (exponent).
+constexpr auto N_MAX(31u);      // Max number of elements (exponent).
 
 //
 // Function prototypes.
@@ -26,7 +22,7 @@ template <typename T>
 void randomFill(T *&, const T, const T, const unsigned int, const int);
 
 //
-// Main program.
+// Main function.
 //
 int main(int argc, char *argv[]) {
     auto arrSz(N_DEFAULT);  // Initialize vector size.
@@ -46,6 +42,8 @@ int main(int argc, char *argv[]) {
     }
 
     std::cout << "\n\n>>> Required array size is: 2^" << arrSz << "\n\n";
+
+    arrSz = pow(2, arrSz);
 
     // Store the data.
     long int *V;
@@ -77,8 +75,13 @@ int main(int argc, char *argv[]) {
     std::cout << "], Size = " << arrSz << "\n\n";
 
     // bsearch wrapper example
-    long int to_search = 10;
-    std::cout << wrapper_std_bsearch(V, to_search, 0, arrSz-1) << std::endl;
+    long int to_search = r()%100;
+    std::cout << ">>> Trying to search by " << to_search << " with wrapper_std_bsearch()\n";
+    int pos = wrapper_std_bsearch(V, to_search, 0, arrSz-1);
+    if (pos == -1)
+        std::cout << to_search << " Wasn't found at Vet" << std::endl;
+    else
+        std::cout << to_search << " Was found at position " << pos << std::endl;
 
     // Delete allocated vector
     delete[] V;
