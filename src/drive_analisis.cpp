@@ -48,13 +48,18 @@ int main(int argc, char *argv[]) {
     std::cout << "\n\n>>> Required array size is: 2^" << arrSz << "\n\n";
 
     // Store the data.
-    long int *V, l = 0, u = 100;
+    long int *V;
+
+    // To randomFill
+    long int lower = 0, upper = 100;
+
+    // Allocate V
     V = new long int[arrSz];
 
     // Seed with a real random value, if available.
     std::random_device r;
     // Fill it up with random integers.
-    randomFill(V, l, u, r(), arrSz);
+    randomFill(V, lower, upper, r(), arrSz);
 
     // Printing out the array, just to make sure we've got random integers.
     std::cout << ">>> ORIGINAL Vet = [ ";
@@ -62,7 +67,7 @@ int main(int argc, char *argv[]) {
         std::cout << *(V+i) << ' ';
     std::cout << "], Size = " << arrSz << "\n\n";
 
-    // Sort array.
+    // Sort array with the standard sort function.
     std::sort(V, V + arrSz);
 
     // Printing out the sorted array.
@@ -75,6 +80,7 @@ int main(int argc, char *argv[]) {
     long int to_search = 10;
     std::cout << wrapper_std_bsearch(V, to_search, 0, arrSz-1) << std::endl;
 
+    // Delete allocated vector
     delete[] V;
 
     return EXIT_SUCCESS;
