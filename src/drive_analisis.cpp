@@ -75,14 +75,37 @@ int main(int argc, char *argv[]) {
         std::cout << *(V+i) << ' ';
     std::cout << "], Size = " << arrSz << "\n\n";
 
-    // bsearch wrapper example
-    long int to_search = r()%100;
-    std::cout << ">>> Trying to search by " << to_search << " with wrapper_std_bsearch()\n";
-    int pos = wrapper_std_bsearch(V, to_search, 0, arrSz-1);
-    if (pos == -1)
-        std::cout << to_search << " Wasn't found at Vet" << std::endl;
-    else
-        std::cout << to_search << " Was found at position " << pos << std::endl;
+    long int to_search = r()%100;  // Set to_search with a random number between 0 - 100
+    int pos;
+
+    int (*functions[])(long int *, long int, int, int) = {
+        wrapper_std_bsearch,
+        seq_search_r,
+        seq_search_i,
+        binary_search_r,
+        binary_search_i,
+        ternary_search_r,
+        ternary_search_i,
+    };
+
+    std::string functions_name[] = {
+        "wrapper_std_bsearch()",
+        "seq_search_r()",
+        "seq_search_i()",
+        "binary_search_r()",
+        "binary_search_i()",
+        "ternary_search_r()",
+        "ternary_search_i()",
+    };
+
+    for (int i = 0; i < 7; i++) {
+        std::cout << ">>> Trying to search by " << to_search << " with " << functions_name[i] << '\n';
+        pos = functions[i](V, to_search, 0, arrSz-1);
+        if (pos == -1)
+            std::cout << to_search << " Wasn't found at Vet" << std::endl;
+        else
+            std::cout << to_search << " Was found at position " << pos << std::endl;
+    }
 
     // Delete allocated vector
     delete[] V;
