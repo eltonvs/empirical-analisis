@@ -7,6 +7,7 @@
 #include <chrono>     // To time measurement
 #include <algorithm>  // To std::search
 #include <cstdlib>    // To std::bsearch
+#include <string>     // To use strings
 
 #include "search.h"
 
@@ -102,9 +103,9 @@ int main(int argc, char *argv[]) {
         std::cout << ">>> Trying to search by " << to_search << " with " << functions_name[i] << '\n';
         pos = functions[i](V, to_search, 0, arrSz-1);
         if (pos == -1)
-            std::cout << to_search << " Wasn't found at Vet" << std::endl;
+            std::cout << to_search << " Wasn't found at Vet" << std::endl << std::endl;
         else
-            std::cout << to_search << " Was found at position " << pos << std::endl;
+            std::cout << to_search << " Was found at position " << pos << std::endl << std::endl;
     }
 
     // Delete allocated vector
