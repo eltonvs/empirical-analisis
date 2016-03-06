@@ -5,7 +5,8 @@
 #include <sstream>    // To convert args
 #include <random>     // To generate random numbers
 #include <chrono>     // To time measurement
-#include <algorithm>  // To std:: search and std::bsearch
+#include <algorithm>  // To std::search
+#include <cstdlib>    // To std::bsearch
 
 #include "search.h"
 
