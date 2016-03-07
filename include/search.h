@@ -35,6 +35,9 @@ int ternary_search_i(T1, T2, int, int);
 template <typename T1, typename T2>
 int seq_search_nth(T1, T2, int, int, int, int (*)(T1, T2, int, int));
 
+template <typename T1, typename T2>
+int bin_search_nth(T1, T2, int, int, int, int (*)(T1, T2, int, int));
+
 #include "search.inl"
 
 #endif

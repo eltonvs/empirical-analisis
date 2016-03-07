@@ -90,3 +90,15 @@ int seq_search_nth(T1 v, T2 x, int l, int r, int k, int (*seq_search)(T1, T2, in
         result = seq_search(v, x, result+1, r);
     return result;
 }
+
+template <typename T1, typename T2>
+int bin_search_nth(T1 v, T2 x, int l, int r, int k, int (*bin_search)(T1, T2, int, int)) {
+    int first_result = bin_search(v, x, l, r);
+    if (-1 == first_result)
+        return first_result;
+
+    while (first_result > 0 && *(v+first_result-1) == x)
+        first_result--;
+
+    return *(v+first_result+k) == x ? first_result+k : -1;
+}

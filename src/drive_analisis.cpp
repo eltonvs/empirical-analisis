@@ -80,9 +80,9 @@ int main(int argc, char *argv[]) {
     long int to_search = 54;  // Set to_search with 54 (a "random" number)
 
     int (*functions[])(long int *, long int, int, int) = {
-        wrapper_std_bsearch,
         seq_search_r,
         seq_search_i,
+        wrapper_std_bsearch,
         binary_search_r,
         binary_search_i,
         ternary_search_r,
@@ -90,9 +90,9 @@ int main(int argc, char *argv[]) {
     };
 
     std::string functions_name[] = {
-        "wrapper_std_bsearch()",
         "seq_search_r()",
         "seq_search_i()",
+        "wrapper_std_bsearch()",
         "binary_search_r()",
         "binary_search_i()",
         "ternary_search_r()",
