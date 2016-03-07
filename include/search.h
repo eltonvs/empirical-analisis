@@ -33,10 +33,7 @@ int ternary_search_i(T1, T2, int, int);
 
 // Search the nth element
 template <typename T1, typename T2>
-int seq_search_r_nth(T1 v, T2 x, int l, int r, int k);
-
-template <typename T1, typename T2>
-int seq_search_i_nth(T1 v, T2 x, int l, int r, int k);
+int seq_search_nth(T1, T2, int, int, int, int (*)(T1, T2, int, int));
 
 #include "search.inl"
 

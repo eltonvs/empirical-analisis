@@ -77,8 +77,7 @@ int main(int argc, char *argv[]) {
         std::cout << *(V+i) << ' ';
     std::cout << "], Size = " << arrSz << "\n\n";
 
-    long int to_search = r()%100;  // Set to_search with a random number between 0 - 100
-    int pos;
+    long int to_search = 54;  // Set to_search with 54 (a "random" number)
 
     int (*functions[])(long int *, long int, int, int) = {
         wrapper_std_bsearch,
@@ -101,6 +100,7 @@ int main(int argc, char *argv[]) {
     };
 
     for (int i = 0; i < 7; i++) {
+        int pos;
         std::cout << ">>> Trying to search by " << to_search << " with " << functions_name[i] << '\n';
         pos = functions[i](V, to_search, 0, arrSz-1);
         if (pos == -1)
