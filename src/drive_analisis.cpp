@@ -57,9 +57,10 @@ int main(int argc, char *argv[]) {
     V = new long int[arrSz];
 
     // Seed with a real random value, if available.
-    std::random_device r;
+    //std::random_device r;
     // Fill it up with random integers.
-    randomFill(V, lower, upper, r(), arrSz);
+    int seed = 2;
+    randomFill(V, lower, upper, seed, arrSz);
 
     // Printing out the array, just to make sure we've got random integers.
     std::cout << ">>> ORIGINAL Vet = [ ";
