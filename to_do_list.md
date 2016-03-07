@@ -19,8 +19,8 @@
  - [x] busca binária padrão (std::bsearch -> cstdlib)    // Apenas em arranjos ordenados
  - [x] busca ternária interativa                         // Apenas em arranjos ordenados
  - [x] busca ternária recursiva                          // Apenas em arranjos ordenados
-- [ ] Adaptações:
- - [ ] fazer as funções retornarem a 3º ocorrencia (chama a funcao mais 2 vezes com os parametros adequados)
+- [x] Adaptações:
+ - [x] fazer as funções retornarem a 3º ocorrencia (chama a funcao mais 2 vezes com os parametros adequados)
  - [x] incluir um parametro i, para determinada ocorrencia (i = 0 -> primeira, i = 1 -> segunda...)
 - [ ] Criação de wrappers:
  - [ ] Criar uma nova função para chamar as funções std::search e std::bsearch
