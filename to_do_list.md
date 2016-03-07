@@ -48,6 +48,7 @@
     - [ ] Se sim, por que não continuar dividindo-o?
    - [ ] Aconteceu algo inesperado nas medições? (picos ou vales nos gráficos) Por que?
    - [ ] Que função matemática melhor se aproxima para descrever o gráfico gerado?
-   - É possível estimar o tempo necessário para cada algoritmo executar com 100 milhões de elementos?
-   - [ ] A análise empírica é compatível com a análise matemática?- [ ] Entrega
+   - [ ] É possível estimar o tempo necessário para cada algoritmo executar com 100 milhões de elementos?
+   - [ ] A análise empírica é compatível com a análise matemática?
+- [ ] Entrega
  - [ ] Um arquivo compactado contendo as pastas do projeto e o PDF com o relatório técnico
