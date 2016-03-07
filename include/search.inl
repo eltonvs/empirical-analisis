@@ -84,16 +84,16 @@ int ternary_search_i(T1 v, T2 x, int l, int r) {
 }
 
 template <typename T1, typename T2>
-int seq_search_nth(T1 v, T2 x, int l, int r, int k, int (*seq_search)(T1, T2, int, int)) {
+int mixed_search_nth(T1 v, T2 x, int l, int r, int k, int (*mixed_search)(T1, T2, int, int)) {
     int result = l-1;
     for (int i = 0; i <= k; i++)
-        result = seq_search(v, x, result+1, r);
+        result = mixed_search(v, x, result+1, r);
     return result;
 }
 
 template <typename T1, typename T2>
-int bin_search_nth(T1 v, T2 x, int l, int r, int k, int (*bin_search)(T1, T2, int, int)) {
-    int first_result = bin_search(v, x, l, r);
+int sorted_search_nth(T1 v, T2 x, int l, int r, int k, int (*sorted_search)(T1, T2, int, int)) {
+    int first_result = sorted_search(v, x, l, r);
     if (-1 == first_result)
         return first_result;
 
