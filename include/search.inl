@@ -84,25 +84,17 @@ int ternary_search_i(T1 v, T2 x, int l, int r) {
 }
 
 template <typename T1, typename T2>
-int seq_search_r_3(T1 v, T2 x, int l, int r) {
-    int i = 0, a = l-1;
-    while(i != 2){
-        a = seq_search_r(v, x, a+1, r);
-        i++;
-        if(a == r)
-            return -1;
-    }
-    return a;
+int seq_search_r_nth(T1 v, T2 x, int l, int r, int k) {
+    int result = l-1;
+    for (int i = 0; i <= k; i++)
+        result = seq_search_r(v, x, result+1, r);
+    return result;
 }
 
 template <typename T1, typename T2>
-int seq_search_i_3(T1 v, T2 x, int l, int r) {
-    int i = 0, a = l-1;
-    while(i != 2){
-        a = seq_search_i(v, x, a+1, r);
-        i++;
-        if(a == r)
-            return -1;
-    }
-    return a;
+int seq_search_i_nth(T1 v, T2 x, int l, int r, int k) {
+    int result = l-1;
+    for (int i = 0; i <= k; i++)
+        result = seq_search_i(v, x, result+1, r);
+    return result;
 }
