@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cstdlib>
 #include "search.h"
 
 template <typename T>
