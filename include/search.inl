@@ -89,6 +89,8 @@ int seq_search_r_3(T1 v, T2 x, int l, int r) {
     while(i != 2){
         a = seq_search_r(v, x, a+1, r);
         i++;
+        if(a == r)
+            return -1;
     }
     return a;
 }
@@ -99,6 +101,8 @@ int seq_search_i_3(T1 v, T2 x, int l, int r) {
     while(i != 2){
         a = seq_search_i(v, x, a+1, r);
         i++;
+        if(a == r)
+            return -1;
     }
     return a;
 }
