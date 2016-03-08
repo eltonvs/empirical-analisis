@@ -6,10 +6,10 @@
  - [x] Valores pseudo aleatorios (em qualquer ordem)
  - [x] Valores em ordem nao decrescente
  - Obs: Em ambos os casos, podem haver valores repetidos
-- [ ] Resultados da busca:
- - [ ] Pior caso (quando k não está no vetor)
- - [ ] Quando k encontra-se distante 3/4 do comprimento de A
- - [ ] A terceira ocorrencia de k no arranjo (se existir)
+- [x] Resultados da busca:
+ - [x] Pior caso (quando k não está no vetor)
+ - [x] Quando k encontra-se distante 3/4 do comprimento de A
+ - [x] A terceira ocorrencia de k no arranjo (se existir)
 - [ ] Algoritmos:
  - [x] busca sequencial interativa
  - [x] busca sequencial recursiva
