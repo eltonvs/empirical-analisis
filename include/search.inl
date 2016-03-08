@@ -101,11 +101,7 @@ int mixed_search_nth(T1 v, T2 x, int l, int r, int k, int (*mixed_search)(T1, T2
 template <typename T1, typename T2>
 int sorted_search_nth(T1 v, T2 x, int l, int r, int k, int (*sorted_search)(T1, T2, int, int)) {
     int first_result = sorted_search(v, x, l, r);
-    if (-1 == first_result)
-        return first_result;
-
     while (first_result > 0 && *(v+first_result-1) == x)
         first_result--;
-
     return *(v+first_result+k) == x ? first_result+k : -1;
 }
