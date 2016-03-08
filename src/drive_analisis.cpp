@@ -62,24 +62,18 @@ int main(int argc, char *argv[]) {
     int seed = 2;
     randomFill(V, lower, upper, seed, arrSz);
 
+#ifdef PRINT_ARRAY_MIXED
     // Printing out the array, just to make sure we've got random integers.
     std::cout << ">>> ORIGINAL Vet = [ ";
     for (auto i(0u); i < arrSz; i++)
         std::cout << *(V+i) << ' ';
     std::cout << "], Size = " << arrSz << "\n\n";
-
-    // Sort array with the standard sort function.
-    std::sort(V, V + arrSz);
-
-    // Printing out the sorted array.
-    std::cout << ">>> SORTED Vet = [ ";
-    for (auto i(0u); i < arrSz; i++)
-        std::cout << *(V+i) << ' ';
-    std::cout << "], Size = " << arrSz << "\n\n";
+#endif
 
     long int to_search = 54;  // Set to_search with 54 (a "random" number)
 
     int (*functions[])(long int *, long int, int, int) = {
+        wrapper_std_search,
         seq_search_r,
         seq_search_i,
         wrapper_std_bsearch,
@@ -90,6 +84,7 @@ int main(int argc, char *argv[]) {
     };
 
     std::string functions_name[] = {
+        "wrapper_std_search()",
         "seq_search_r()",
         "seq_search_i()",
         "wrapper_std_bsearch()",
@@ -99,7 +94,26 @@ int main(int argc, char *argv[]) {
         "ternary_search_i()",
     };
 
-    for (int i = 0; i < 7; i++) {
+    std::cout << "\nElement = " << to_search << "\n";
+    for (int i = 0; i < 3; i++)
+        std::cout << "Finding the 3rd element with " << functions_name[i] << " = " << mixed_search_nth(V, to_search, 0, arrSz-1, 2, functions[i]) << std::endl;
+
+    // Sort array with the standard sort function.
+    std::sort(V, V + arrSz);
+
+#ifdef PRINT_ARRAY_SORTED
+    // Printing out the sorted array, just to make sure we've got random integers.
+    std::cout << ">>> SORTED Vet = [ ";
+    for (auto i(0u); i < arrSz; i++)
+        std::cout << *(V+i) << ' ';
+    std::cout << "], Size = " << arrSz << "\n\n";
+#endif
+
+    for (int i = 3; i < 8; i++)
+        std::cout << "Finding the 3rd element with " << functions_name[i] << " = " << sorted_search_nth(V, to_search, 0, arrSz-1, 2, functions[i]) << std::endl;
+    std::cout << "\n\n";
+
+    for (int i = 0; i < 8; i++) {
         int pos;
         std::cout << ">>> Trying to search by " << to_search << " with " << functions_name[i] << '\n';
         pos = functions[i](V, to_search, 0, arrSz-1);

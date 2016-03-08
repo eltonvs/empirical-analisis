@@ -8,6 +8,12 @@ int compare(T a, T b) {
 }
 
 template <typename T1, typename T2>
+int wrapper_std_search(T1 v, T2 x, int l, int r) {
+    // Not working yet
+    return 0;
+}
+
+template <typename T1, typename T2>
 int wrapper_std_bsearch(T1 v, T2 x, int l, int r) {
     T1 a = (T1)bsearch(&x, v, r-l+1, sizeof(*v), compare);
     return a == 0 ? -1 : a-v;
