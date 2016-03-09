@@ -90,14 +90,6 @@ int main(int argc, char *argv[]) {
         long int worst_case = upper + 1;          // inexistent value
         long int third_quartile = *(V+3*n/4);  // 3/4 lenght
 
-        #ifdef PRINT_ARRAY_MIXED
-        // Printing out the array, just to make sure we've got random integers.
-        std::cout << ">>> ORIGINAL Vet = [ ";
-        for (auto i(0u); i < n; i++)
-            std::cout << *(V+i) << ' ';
-        std::cout << "], Size = " << n << "\n\n";
-        #endif
-
         std::cout << "\nElement = " << third_quartile << "\n";
         for (int i = 0; i < 3; i++) {
             std::cout << "Finding the Worst Case with " << functions_name[i] << " = " << functions[i](V, worst_case, 0, n-1) << std::endl;
@@ -107,14 +99,6 @@ int main(int argc, char *argv[]) {
 
         // Sort array with the standard sort function.
         std::sort(V, V + n);
-
-        #ifdef PRINT_ARRAY_SORTED
-        // Printing out the sorted array, just to make sure we've got random integers.
-        std::cout << ">>> SORTED Vet = [ ";
-        for (auto i(0u); i < n; i++)
-            std::cout << *(V+i) << ' ';
-        std::cout << "], Size = " << n << "\n\n";
-        #endif
 
         std::cout << "\nNow with the sorted Array\n";
         for (int i = 0; i < 3; i++) {
