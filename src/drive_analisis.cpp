@@ -117,14 +117,24 @@ int main(int argc, char *argv[]) {
         std::cout << "Sorted - Using n = " << n << " for this run\n";
 
         for (int i = 0; i < 3; i++) {
-            functions[i](V, worst_case, 0, n-1);
-            functions[i](V, third_quartile, 0, n-1);
-            mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
+            std::cout <<"\n>>>Processing "<< functions_name[i] <<" ";
+            for (int j = 0; j < 100; ++j){
+                std::cout << ".";
+                functions[i](V, worst_case, 0, n-1);
+                functions[i](V, third_quartile, 0, n-1);
+                mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
+            }
+            std::cout <<">>>end of process."<< std::endl;            
         }
         for (int i = 3; i < 8; i++) {
-            functions[i](V, worst_case, 0, n-1);
-            functions[i](V, third_quartile, 0, n-1);
-            sorted_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
+            std::cout <<"\n>>>Processing "<< functions_name[i] <<" ";
+            for (int j = 0; j < 100; ++j){
+                std::cout << ".";
+                functions[i](V, worst_case, 0, n-1);
+                functions[i](V, third_quartile, 0, n-1);
+                sorted_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
+            }
+            std::cout <<">>>end of process."<< std::endl;
         }
     }
 
