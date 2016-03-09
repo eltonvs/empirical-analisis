@@ -85,49 +85,49 @@ int main(int argc, char *argv[]) {
     // Fill it up with random integers.
     randomFill(V, lower, upper, seed, arrSz);
 
-    // Define numbers to search in array
-    long int worst_case = upper + 1;          // inexistent value
-    long int third_quartile = *(V+3*arrSz/4);  // 3/4 lenght
+    for (auto n(16u); n < arrSz; n *= 2) {
+        // Define numbers to search in array
+        long int worst_case = upper + 1;          // inexistent value
+        long int third_quartile = *(V+3*n/4);  // 3/4 lenght
 
+        #ifdef PRINT_ARRAY_MIXED
+        // Printing out the array, just to make sure we've got random integers.
+        std::cout << ">>> ORIGINAL Vet = [ ";
+        for (auto i(0u); i < n; i++)
+            std::cout << *(V+i) << ' ';
+        std::cout << "], Size = " << n << "\n\n";
+        #endif
 
-#ifdef PRINT_ARRAY_MIXED
-    // Printing out the array, just to make sure we've got random integers.
-    std::cout << ">>> ORIGINAL Vet = [ ";
-    for (auto i(0u); i < arrSz; i++)
-        std::cout << *(V+i) << ' ';
-    std::cout << "], Size = " << arrSz << "\n\n";
-#endif
+        std::cout << "\nElement = " << third_quartile << "\n";
+        for (int i = 0; i < 3; i++) {
+            std::cout << "Finding the Worst Case with " << functions_name[i] << " = " << functions[i](V, worst_case, 0, n-1) << std::endl;
+            std::cout << "Finding the 3/4 Lenght with " << functions_name[i] << " = " << functions[i](V, third_quartile, 0, n-1) << std::endl;
+            std::cout << "Finding the 3rd element with " << functions_name[i] << " = " << mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]) << std::endl << std::endl;
+        }
 
-    std::cout << "\nElement = " << third_quartile << "\n";
-    for (int i = 0; i < 3; i++) {
-        std::cout << "Finding the Worst Case with " << functions_name[i] << " = " << functions[i](V, worst_case, 0, arrSz-1) << std::endl;
-        std::cout << "Finding the 3/4 Lenght with " << functions_name[i] << " = " << functions[i](V, third_quartile, 0, arrSz-1) << std::endl;
-        std::cout << "Finding the 3rd element with " << functions_name[i] << " = " << mixed_search_nth(V, third_quartile, 0, arrSz-1, 2, functions[i]) << std::endl << std::endl;
+        // Sort array with the standard sort function.
+        std::sort(V, V + n);
+
+        #ifdef PRINT_ARRAY_SORTED
+        // Printing out the sorted array, just to make sure we've got random integers.
+        std::cout << ">>> SORTED Vet = [ ";
+        for (auto i(0u); i < n; i++)
+            std::cout << *(V+i) << ' ';
+        std::cout << "], Size = " << n << "\n\n";
+        #endif
+
+        std::cout << "\nNow with the sorted Array\n";
+        for (int i = 0; i < 3; i++) {
+            std::cout << "Finding the Worst Case with " << functions_name[i] << " = " << functions[i](V, worst_case, 0, n-1) << std::endl;
+            std::cout << "Finding the 3/4 Lenght with " << functions_name[i] << " = " << functions[i](V, third_quartile, 0, n-1) << std::endl;
+            std::cout << "Finding the 3rd element with " << functions_name[i] << " = " << mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]) << std::endl << std::endl;
+        }
+        for (int i = 3; i < 8; i++) {
+            std::cout << "Finding the Worst Case with " << functions_name[i] << " = " << functions[i](V, worst_case, 0, n-1) << std::endl;
+            std::cout << "Finding the 3/4 Lenght with " << functions_name[i] << " = " << functions[i](V, third_quartile, 0, n-1) << std::endl;
+            std::cout << "Finding the 3rd element with " << functions_name[i] << " = " << sorted_search_nth(V, third_quartile, 0, n-1, 2, functions[i]) << std::endl << std::endl;
+        }
     }
-
-    // Sort array with the standard sort function.
-    std::sort(V, V + arrSz);
-
-#ifdef PRINT_ARRAY_SORTED
-    // Printing out the sorted array, just to make sure we've got random integers.
-    std::cout << ">>> SORTED Vet = [ ";
-    for (auto i(0u); i < arrSz; i++)
-        std::cout << *(V+i) << ' ';
-    std::cout << "], Size = " << arrSz << "\n\n";
-#endif
-
-    std::cout << "\nNow with the sorted Array\n";
-    for (int i = 0; i < 3; i++) {
-        std::cout << "Finding the Worst Case with " << functions_name[i] << " = " << functions[i](V, worst_case, 0, arrSz-1) << std::endl;
-        std::cout << "Finding the 3/4 Lenght with " << functions_name[i] << " = " << functions[i](V, third_quartile, 0, arrSz-1) << std::endl;
-        std::cout << "Finding the 3rd element with " << functions_name[i] << " = " << mixed_search_nth(V, third_quartile, 0, arrSz-1, 2, functions[i]) << std::endl << std::endl;
-    }
-    for (int i = 3; i < 8; i++) {
-        std::cout << "Finding the Worst Case with " << functions_name[i] << " = " << functions[i](V, worst_case, 0, arrSz-1) << std::endl;
-        std::cout << "Finding the 3/4 Lenght with " << functions_name[i] << " = " << functions[i](V, third_quartile, 0, arrSz-1) << std::endl;
-        std::cout << "Finding the 3rd element with " << functions_name[i] << " = " << sorted_search_nth(V, third_quartile, 0, arrSz-1, 2, functions[i]) << std::endl << std::endl;
-    }
-
     // Delete allocated vector
     delete[] V;
 
