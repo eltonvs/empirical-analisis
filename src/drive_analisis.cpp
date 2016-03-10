@@ -130,24 +130,24 @@ int main(int argc, char *argv[]) {
             if (i == 1 && n > 131072)
                 continue;
 
-            std::cout <<"\n>>>Processing "<< functions_name[i];
+            std::cout <<"\n>>> Processing "<< functions_name[i];
             for (int j = 0; j < 100; ++j){
                 std::cout << ".";
                 functions[i](V, worst_case, 0, n-1);
                 functions[i](V, third_quartile, 0, n-1);
                 mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
             }
-            std::cout << "\n>>> End of process.\n";
+            std::cout << ">>> End of process.\n";
         }
         for (int i = 3; i < 8; i++) {
-            std::cout <<">>>Processing "<< functions_name[i];
+            std::cout <<">>> Processing "<< functions_name[i];
             for (int j = 0; j < 100; ++j){
                 std::cout << ".";
                 functions[i](V, worst_case, 0, n-1);
                 functions[i](V, third_quartile, 0, n-1);
                 sorted_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
             }
-            std::cout << "\n>>> End of process.\n";
+            std::cout << ">>> End of process.\n";
         }
     }
 
