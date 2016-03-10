@@ -103,14 +103,12 @@ int main(int argc, char *argv[]) {
             if (i == 1 && n > 131072)
                 continue;
 
-            std::cout <<"\n>>>Processing "<< functions_name[i];
+            std::cout <<">>>Processing "<< functions_name[i] << '\n';
             for (int j = 0; j < 100; ++j){
-                std::cout << ".";
                 functions[i](V, worst_case, 0, n-1);
                 functions[i](V, third_quartile, 0, n-1);
                 mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
             }
-            std::cout << "\n>>> End of process.";
         }
     }
 
@@ -123,31 +121,27 @@ int main(int argc, char *argv[]) {
         third_quartile = *(V+3*n/4);  // 3/4 lenght
 
         // Show message with n
-        std::cout << "\n\nSorted - Using n = " << n << " for this run\n";
+        std::cout << "\nSorted - Using n = " << n << " for this run\n";
 
         for (int i = 0; i < 3; i++) {
             // seq_search_r() limits (Recursion Limit)
             if (i == 1 && n > 131072)
                 continue;
 
-            std::cout <<"\n>>>Processing "<< functions_name[i];
+            std::cout <<">>>Processing "<< functions_name[i] << '\n';
             for (int j = 0; j < 100; ++j){
-                std::cout << ".";
                 functions[i](V, worst_case, 0, n-1);
                 functions[i](V, third_quartile, 0, n-1);
                 mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
             }
-            std::cout << "\n>>> End of process.\n";
         }
         for (int i = 3; i < 8; i++) {
-            std::cout <<">>>Processing "<< functions_name[i];
+            std::cout <<">>>Processing "<< functions_name[i] << '\n';
             for (int j = 0; j < 100; ++j){
-                std::cout << ".";
                 functions[i](V, worst_case, 0, n-1);
                 functions[i](V, third_quartile, 0, n-1);
                 sorted_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
             }
-            std::cout << "\n>>> End of process.\n";
         }
     }
 
