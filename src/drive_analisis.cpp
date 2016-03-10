@@ -140,7 +140,7 @@ int main(int argc, char *argv[]) {
             std::cout << ">>> End of process.\n";
         }
         for (int i = 3; i < 8; i++) {
-            std::cout <<">>> Processing "<< functions_name[i];
+            std::cout <<"\n>>> Processing "<< functions_name[i];
             for (int j = 0; j < 100; ++j){
                 std::cout << ".";
                 functions[i](V, worst_case, 0, n-1);
