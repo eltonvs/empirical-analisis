@@ -110,7 +110,7 @@ int main(int argc, char *argv[]) {
                 functions[i](V, third_quartile, 0, n-1);
                 mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
             }
-            std::cout << "\n>>> end of process.";
+            std::cout << "\n>>> End of process.";
         }
     }
 
@@ -137,11 +137,7 @@ int main(int argc, char *argv[]) {
                 functions[i](V, third_quartile, 0, n-1);
                 mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
             }
-<<<<<<< HEAD
-            std::cout << "\n>>> end of process.\n";
-=======
-            std::cout <<" >>> End of process."<< std::endl;            
->>>>>>> aaab1d08d40a067412f9cf256b5aae3ed3e2332f
+            std::cout << "\n>>> End of process.\n";
         }
         for (int i = 3; i < 8; i++) {
             std::cout <<">>>Processing "<< functions_name[i];
@@ -151,11 +147,7 @@ int main(int argc, char *argv[]) {
                 functions[i](V, third_quartile, 0, n-1);
                 sorted_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
             }
-<<<<<<< HEAD
-            std::cout << "\n>>> end of process.\n";
-=======
-            std::cout <<" >>> End of process."<< std::endl;
->>>>>>> aaab1d08d40a067412f9cf256b5aae3ed3e2332f
+            std::cout << "\n>>> End of process.\n";
         }
     }
 
