@@ -1,5 +1,6 @@
-#include <algorithm>
-#include <cstdlib>
+#include <algorithm>  // To std::search
+#include <cstdlib>    // To std::bsearch
+#include <random>     // To generate random numbers
 #include "search.h"
 
 template <typename T>
@@ -104,4 +105,16 @@ int sorted_search_nth(T1 v, T2 x, int l, int r, int k, int (*sorted_search)(T1, 
     while (first_result > 0 && *(v+first_result-1) == x)
         first_result--;
     return *(v+first_result+k) == x ? first_result+k : -1;
+}
+
+// Fill a vector with random numbers in the range [l -> lower, u -> upper]
+template <typename T>
+void randomFill(T *&V, const T l, const T u, const unsigned int seed, const int s) {
+    // use the default random engine and an uniform distribution
+    std::default_random_engine eng(seed);
+    std::uniform_real_distribution<double> distr(l, u);
+
+    // Fill up vector
+    for (int i = 0; i < s; i++)
+        *(V+i) = distr(eng);
 }

@@ -3,10 +3,7 @@
 #include <iostream>   // To input/output
 #include <fstream>    // To files i/o
 #include <sstream>    // To convert args
-#include <random>     // To generate random numbers
 #include <chrono>     // To time measurement
-#include <algorithm>  // To std::search
-#include <cstdlib>    // To std::bsearch
 #include <string>     // To use strings
 
 #include "search.h"
@@ -16,12 +13,6 @@
 //
 constexpr auto N_DEFAULT(20u);  // Default number of elements (exponent).
 constexpr auto N_MAX(31u);      // Max number of elements (exponent).
-
-//
-// Function prototypes.
-//
-template <typename T>
-void randomFill(T *&, const T, const T, const unsigned int, const int);
 
 //
 // Main function.
@@ -149,16 +140,4 @@ int main(int argc, char *argv[]) {
     delete[] V;
 
     return EXIT_SUCCESS;
-}
-
-// Fill a vector with random numbers in the range [l -> lower, u -> upper]
-template <typename T>
-void randomFill(T *&V, const T l, const T u, const unsigned int seed, const int s) {
-    // use the default random engine and an uniform distribution
-    std::default_random_engine eng(seed);
-    std::uniform_real_distribution<double> distr(l, u);
-
-    // Fill up vector
-    for (int i = 0; i < s; i++)
-        *(V+i) = distr(eng);
 }

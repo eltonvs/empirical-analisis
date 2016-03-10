@@ -42,6 +42,10 @@ int mixed_search_nth(T1, T2, int, int, int, int (*)(T1, T2, int, int));
 template <typename T1, typename T2>
 int sorted_search_nth(T1, T2, int, int, int, int (*)(T1, T2, int, int));
 
+// Random Fill
+template <typename T>
+void randomFill(T *&, const T, const T, const unsigned int, const int);
+
 #include "search.inl"
 
 #endif
