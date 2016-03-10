@@ -124,7 +124,7 @@ int main(int argc, char *argv[]) {
                 functions[i](V, third_quartile, 0, n-1);
                 mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
             }
-            std::cout <<">>>end of process."<< std::endl;            
+            std::cout <<" >>> End of process."<< std::endl;            
         }
         for (int i = 3; i < 8; i++) {
             std::cout <<"\n>>>Processing "<< functions_name[i] <<" ";
@@ -134,7 +134,7 @@ int main(int argc, char *argv[]) {
                 functions[i](V, third_quartile, 0, n-1);
                 sorted_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
             }
-            std::cout <<">>>end of process."<< std::endl;
+            std::cout <<" >>> End of process."<< std::endl;
         }
     }
 
