@@ -3,7 +3,6 @@
 #include <iostream>   // To input/output
 #include <fstream>    // To files i/o
 #include <sstream>    // To convert args
-#include <chrono>     // To time measurement
 #include <string>     // To use strings
 
 #include "search.h"
@@ -94,12 +93,10 @@ int main(int argc, char *argv[]) {
             if (i == 1 && n > 131072)
                 continue;
 
-            std::cout <<">>>Processing "<< functions_name[i] << '\n';
-            for (int j = 0; j < 100; ++j){
-                functions[i](V, worst_case, 0, n-1);
-                functions[i](V, third_quartile, 0, n-1);
-                mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
-            }
+            std::cout << ">>> Processing " << functions_name[i] << '\n';
+            std::cout << std::fixed << "WC = " << time_measurement(100, functions[i], V, worst_case, 0, n-1) << '\n';
+            std::cout << std::fixed << "TQ = " << time_measurement(100, functions[i], V, third_quartile, 0, n-1) << '\n';
+            mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
         }
     }
 
@@ -119,20 +116,16 @@ int main(int argc, char *argv[]) {
             if (i == 1 && n > 131072)
                 continue;
 
-            std::cout <<">>>Processing "<< functions_name[i] << '\n';
-            for (int j = 0; j < 100; ++j){
-                functions[i](V, worst_case, 0, n-1);
-                functions[i](V, third_quartile, 0, n-1);
-                mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
-            }
+            std::cout << ">>> Processing " << functions_name[i] << '\n';
+            std::cout << std::fixed << "WC = " << time_measurement(100, functions[i], V, worst_case, 0, n-1) << '\n';
+            std::cout << std::fixed << "TQ = " << time_measurement(100, functions[i], V, third_quartile, 0, n-1) << '\n';
+            mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
         }
         for (int i = 3; i < 8; i++) {
-            std::cout <<">>>Processing "<< functions_name[i] << '\n';
-            for (int j = 0; j < 100; ++j){
-                functions[i](V, worst_case, 0, n-1);
-                functions[i](V, third_quartile, 0, n-1);
-                sorted_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
-            }
+            std::cout << ">>> Processing " << functions_name[i] << '\n';
+            std::cout << std::fixed << "WC = " << time_measurement(100, functions[i], V, worst_case, 0, n-1) << '\n';
+            std::cout << std::fixed << "TQ = " << time_measurement(100, functions[i], V, third_quartile, 0, n-1) << '\n';
+            sorted_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
         }
     }
 

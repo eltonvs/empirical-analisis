@@ -46,6 +46,10 @@ int sorted_search_nth(T1, T2, int, int, int, int (*)(T1, T2, int, int));
 template <typename T>
 void randomFill(T *&, const T, const T, const unsigned int, const int);
 
+// Time Measurement
+template <typename T1, typename T2>
+long double time_measurement(int, int (*)(T1, T2, int, int), T1, T2, int, int);
+
 #include "search.inl"
 
 #endif

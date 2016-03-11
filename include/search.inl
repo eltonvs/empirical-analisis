@@ -1,5 +1,6 @@
 #include <algorithm>  // To std::search
 #include <cstdlib>    // To std::bsearch
+#include <chrono>     // To time measurement
 #include <random>     // To generate random numbers
 #include "search.h"
 
@@ -117,4 +118,19 @@ void randomFill(T *&V, const T l, const T u, const unsigned int seed, const int 
     // Fill up vector
     for (int i = 0; i < s; i++)
         *(V+i) = distr(eng);
+}
+
+template <typename T1, typename T2>
+long double time_measurement(int n, int (*f)(T1, T2, int, int), T1 v, T2 x, int r, int l) {
+    long double time = 0;
+    for (int i = 0; i < n; i++) {
+        auto s = std::chrono::steady_clock::now();
+        f(v, x, r, l);
+        auto e = std::chrono::steady_clock::now();
+        //auto diff = e - s;
+        auto diff = std::chrono::duration_cast<std::chrono::nanoseconds> (e-s).count();
+
+        time += (diff - time)/(i+1);
+    }
+    return time;
 }
