@@ -1,6 +1,7 @@
 // Copyright - 2016
 
 #include <iostream>   // To input/output
+#include <algorithm>  // To std:sort()
 #include <fstream>    // To files i/o
 #include <sstream>    // To convert args
 #include <string>     // To use strings
