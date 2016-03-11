@@ -128,7 +128,7 @@ long double time_measurement(int n, int (*f)(T1, T2, int, int), T1 v, T2 x, int 
         f(v, x, r, l);
         auto e = std::chrono::steady_clock::now();
         //auto diff = e - s;
-        auto diff = std::chrono::duration_cast<std::chrono::nanoseconds> (e-s).count();
+        auto diff = std::chrono::duration <double, std::milli> (e-s).count();
 
         time += (diff - time)/(i+1);
     }
@@ -143,7 +143,7 @@ long double time_measurement_nth(int n, int (*f)(T1, T2, int, int, int, int (*)(
         f(v, x, r, l, k, f2);
         auto e = std::chrono::steady_clock::now();
         //auto diff = e - s;
-        auto diff = std::chrono::duration_cast<std::chrono::nanoseconds> (e-s).count();
+        auto diff = std::chrono::duration <double, std::milli> (e-s).count();
 
         time += (diff - time)/(i+1);
     }
