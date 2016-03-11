@@ -134,3 +134,18 @@ long double time_measurement(int n, int (*f)(T1, T2, int, int), T1 v, T2 x, int 
     }
     return time;
 }
+
+template <typename T1, typename T2>
+long double time_measurement_nth(int n, int (*f)(T1, T2, int, int, int, int (*)(T1, T2, int, int)), T1 v, T2 x, int r, int l, int k, int (*f2)(T1, T2, int, int)) {
+    long double time = 0;
+    for (int i = 0; i < n; i++) {
+        auto s = std::chrono::steady_clock::now();
+        f(v, x, r, l, k, f2);
+        auto e = std::chrono::steady_clock::now();
+        //auto diff = e - s;
+        auto diff = std::chrono::duration_cast<std::chrono::nanoseconds> (e-s).count();
+
+        time += (diff - time)/(i+1);
+    }
+    return time;
+}

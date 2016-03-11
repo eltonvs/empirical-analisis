@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
             std::cout << ">>> Processing " << functions_name[i] << '\n';
             std::cout << std::fixed << "WC = " << time_measurement(100, functions[i], V, worst_case, 0, n-1) << '\n';
             std::cout << std::fixed << "TQ = " << time_measurement(100, functions[i], V, third_quartile, 0, n-1) << '\n';
-            mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
+            std::cout << std::fixed << "KE = " << time_measurement_nth(100, mixed_search_nth, V, third_quartile, 0, n-1, 2, functions[i]) << '\n';
         }
     }
 
@@ -119,13 +119,13 @@ int main(int argc, char *argv[]) {
             std::cout << ">>> Processing " << functions_name[i] << '\n';
             std::cout << std::fixed << "WC = " << time_measurement(100, functions[i], V, worst_case, 0, n-1) << '\n';
             std::cout << std::fixed << "TQ = " << time_measurement(100, functions[i], V, third_quartile, 0, n-1) << '\n';
-            mixed_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
+            std::cout << std::fixed << "KE = " << time_measurement_nth(100, mixed_search_nth, V, third_quartile, 0, n-1, 2, functions[i]) << '\n';
         }
         for (int i = 3; i < 8; i++) {
             std::cout << ">>> Processing " << functions_name[i] << '\n';
             std::cout << std::fixed << "WC = " << time_measurement(100, functions[i], V, worst_case, 0, n-1) << '\n';
             std::cout << std::fixed << "TQ = " << time_measurement(100, functions[i], V, third_quartile, 0, n-1) << '\n';
-            sorted_search_nth(V, third_quartile, 0, n-1, 2, functions[i]);
+            std::cout << std::fixed << "KE = " << time_measurement_nth(100, sorted_search_nth, V, third_quartile, 0, n-1, 2, functions[i]) << '\n';
         }
     }
 
