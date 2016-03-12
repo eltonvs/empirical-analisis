@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
         third_quartile = V[3*n/4];  // 3/4 lenght
 
         // Show message with n
-        std::cout << "Mixed - Using n = " << n << " for this run\n";
+        std::cout << "\nMixed - Using n = " << n << " for this run\n";
 
         for (int i = 0; i < 3; i++) {
             // seq_search_r() limits (Recursion Limit)
