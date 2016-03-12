@@ -43,8 +43,8 @@ template <typename T1, typename T2>
 int sorted_search_nth(T1, T2, int, int, int, int (*)(T1, T2, int, int));
 
 // Random Fill
-template <typename T>
-void randomFill(T *&, const T, const T, const unsigned int, const int);
+template <typename T1, typename T2>
+void randomFill(T1 &, const T2, const T2, const unsigned int, const int);
 
 // Time Measurement
 template <typename T1, typename T2>
