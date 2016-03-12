@@ -98,7 +98,7 @@ int ternary_search_i(std::vector<T> v, T x, int l, int r) {
 template <typename T>
 int mixed_search_nth(std::vector<T> v, T x, int l, int r, int k, int (*mixed_search)(std::vector<T>, T, int, int)) {
     int result = l-1;
-    for (int i = 0; i <= k; i++)
+    for (int i = 0; i <= k || !(i > 0 && -1 == result); i++)
         result = mixed_search(v, x, result+1, r);
     return result;
 }
