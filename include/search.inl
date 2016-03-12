@@ -13,12 +13,9 @@ template <typename T>
 int wrapper_std_search(std::vector<T> v, T x, int l, int r) {
     T needle[] = {x};
     std::vector<long int>::iterator i;
-    i = std::search(v.begin(), v.end(), needle, needle+1);
+    i = std::search(v.begin()+l, v.begin()+r, needle, needle+1);
 
-    if (i != v.end())
-        return (i-v.begin());
-    else
-        return -1;
+    return (i != v.begin()+r) ? i - (v.begin()+l) : -1;
 }
 
 template <typename T>
