@@ -4,6 +4,7 @@
 #include <algorithm>  // To std:sort()
 #include <fstream>    // To files i/o
 #include <sstream>    // To convert args
+#include <vector>     // To use vectors
 #include <string>     // To use strings
 
 #include "search.h"
@@ -39,9 +40,8 @@ int main(int argc, char *argv[]) {
 
     arrSz = pow(2, arrSz);
 
-    // Allocate V
-    long int *V;
-    V = new long int[arrSz];
+    // Create vector
+    std::vector<long int> V(arrSz);
 
     // To randomFill
     long int lower = -9876543210, upper = 9876543210;
@@ -92,14 +92,14 @@ int main(int argc, char *argv[]) {
                 continue;
 
             std::cout << ">>> Processing " << functions_name[i] << '\n';
-            std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], V, worst_case, 0, n-1) << '\n';
-            std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], V, third_quartile, 0, n-1) << '\n';
-            std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, V, third_quartile, 0, n-1, 2, functions[i]) << '\n';
+            std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], V.data(), worst_case, 0, n-1) << '\n';
+            std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], V.data(), third_quartile, 0, n-1) << '\n';
+            std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, V.data(), third_quartile, 0, n-1, 2, functions[i]) << '\n';
         }
     }
 
     // Sort array with the standard sort function.
-    std::sort(V, V + arrSz);
+    std::sort(V.data(), V.data() + arrSz);
 
     // Tests with the sorted array
     for (auto n(16u); n < arrSz; n *= 2) {
@@ -115,20 +115,17 @@ int main(int argc, char *argv[]) {
                 continue;
 
             std::cout << ">>> Processing " << functions_name[i] << '\n';
-            std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], V, worst_case, 0, n-1) << '\n';
-            std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], V, third_quartile, 0, n-1) << '\n';
-            std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, V, third_quartile, 0, n-1, 2, functions[i]) << '\n';
+            std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], V.data(), worst_case, 0, n-1) << '\n';
+            std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], V.data(), third_quartile, 0, n-1) << '\n';
+            std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, V.data(), third_quartile, 0, n-1, 2, functions[i]) << '\n';
         }
         for (int i = 3; i < 8; i++) {
             std::cout << ">>> Processing " << functions_name[i] << '\n';
-            std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], V, worst_case, 0, n-1) << '\n';
-            std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], V, third_quartile, 0, n-1) << '\n';
-            std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, sorted_search_nth, V, third_quartile, 0, n-1, 2, functions[i]) << '\n';
+            std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], V.data(), worst_case, 0, n-1) << '\n';
+            std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], V.data(), third_quartile, 0, n-1) << '\n';
+            std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, sorted_search_nth, V.data(), third_quartile, 0, n-1, 2, functions[i]) << '\n';
         }
     }
-
-    // Delete allocated vector
-    delete[] V;
 
     return EXIT_SUCCESS;
 }
