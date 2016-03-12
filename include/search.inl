@@ -139,11 +139,12 @@ long double time_measurement(int n, int (*f)(std::vector<T>, T, int, int), T x, 
 }
 
 template <typename T>
-long double time_measurement_nth(int n, int (*f)(std::vector<T>, T, int, int, int, int (*)(std::vector<T>, T, int, int)), std::vector<T> v, T x, int r, int l, int k, int (*f2)(std::vector<T>, T, int, int)) {
+long double time_measurement_nth(int n, int (*f)(std::vector<T>, T, int, int, int, int (*)(std::vector<T>, T, int, int)), T x, std::vector<long int>::const_iterator it, int l, int r, int k, int (*f2)(std::vector<T>, T, int, int)) {
     long double time = 0;
+    std::vector<long int> v(it+l, it+r);
     for (int i = 0; i < n; i++) {
         auto s = std::chrono::steady_clock::now();
-        f(v, x, r, l, k, f2);
+        f(v, x, l, r, k, f2);
         auto e = std::chrono::steady_clock::now();
         auto diff = std::chrono::duration <double, std::milli> (e-s).count();
 
