@@ -6,7 +6,7 @@
 
 template <typename T>
 int compare(T a, T b) {
-    return *(long int *)a - *(long int *)b;
+    return *(long int *)a < *(long int *)b ? -1 : *(long int *)a > *(long int *)b ? 1 : 0;
 }
 
 template <typename T>
@@ -20,7 +20,7 @@ int wrapper_std_search(std::vector<T> v, T x, int l, int r) {
 
 template <typename T>
 int wrapper_std_bsearch(std::vector<T> v, T x, int l, int r) {
-    T *a = (T *)bsearch(&x, v.data(), r-l+1, sizeof(T), compare);
+    T *a = (T *)bsearch(&x, v.data()+l, r-l+1, sizeof(T), compare);
     return a == 0 ? -1 : a-v.data();
 }
 
