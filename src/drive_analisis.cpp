@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
     int seed = 2;
 
     // Create Functions Array
-    int (*functions[])(long int *, long int, int, int) = {
+    int (*functions[])(std::vector<long int>, long int, int, int) = {
         wrapper_std_search,
         seq_search_r,
         seq_search_i,
@@ -92,9 +92,9 @@ int main(int argc, char *argv[]) {
                 continue;
 
             std::cout << ">>> Processing " << functions_name[i] << '\n';
-            std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], V.data(), worst_case, 0, n-1) << '\n';
-            std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], V.data(), third_quartile, 0, n-1) << '\n';
-            std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, V.data(), third_quartile, 0, n-1, 2, functions[i]) << '\n';
+            std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], V, worst_case, 0, n-1) << '\n';
+            std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], V, third_quartile, 0, n-1) << '\n';
+            std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, V, third_quartile, 0, n-1, 2, functions[i]) << '\n';
         }
     }
 
@@ -115,15 +115,15 @@ int main(int argc, char *argv[]) {
                 continue;
 
             std::cout << ">>> Processing " << functions_name[i] << '\n';
-            std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], V.data(), worst_case, 0, n-1) << '\n';
-            std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], V.data(), third_quartile, 0, n-1) << '\n';
-            std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, V.data(), third_quartile, 0, n-1, 2, functions[i]) << '\n';
+            std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], V, worst_case, 0, n-1) << '\n';
+            std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], V, third_quartile, 0, n-1) << '\n';
+            std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, V, third_quartile, 0, n-1, 2, functions[i]) << '\n';
         }
         for (int i = 3; i < 8; i++) {
             std::cout << ">>> Processing " << functions_name[i] << '\n';
-            std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], V.data(), worst_case, 0, n-1) << '\n';
-            std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], V.data(), third_quartile, 0, n-1) << '\n';
-            std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, sorted_search_nth, V.data(), third_quartile, 0, n-1, 2, functions[i]) << '\n';
+            std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], V, worst_case, 0, n-1) << '\n';
+            std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], V, third_quartile, 0, n-1) << '\n';
+            std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, sorted_search_nth, V, third_quartile, 0, n-1, 2, functions[i]) << '\n';
         }
     }
 

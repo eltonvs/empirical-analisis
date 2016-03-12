@@ -9,26 +9,32 @@ int compare(T a, T b) {
     return *(long int *)a - *(long int *)b;
 }
 
-template <typename T1, typename T2>
-int wrapper_std_search(T1 v, T2 x, int l, int r) {
-    // Not working yet
-    return 0;
+template <typename T>
+int wrapper_std_search(std::vector<T> v, T x, int l, int r) {
+    T needle[] = {x};
+    std::vector<long int>::iterator i;
+    i = std::search(v.begin(), v.end(), needle, needle+1);
+
+    if (i != v.end())
+        return (i-v.begin());
+    else
+        return -1;
 }
 
-template <typename T1, typename T2>
-int wrapper_std_bsearch(T1 v, T2 x, int l, int r) {
-    T1 a = (T1)bsearch(&x, v, r-l+1, sizeof(*v), compare);
-    return a == 0 ? -1 : a-v;
+template <typename T>
+int wrapper_std_bsearch(std::vector<T> v, T x, int l, int r) {
+    T *a = (T *)bsearch(&x, v.data(), r-l+1, sizeof(T), compare);
+    return a == 0 ? -1 : a-v.data();
 }
 
-template <typename T1, typename T2>
-int seq_search_r(T1 v, T2 x, int l, int r) {
+template <typename T>
+int seq_search_r(std::vector<T> v, T x, int l, int r) {
     return (l > r) ? -1 :
         v[l] == x ? l : seq_search_r(v, x, l+1, r);
 }
 
-template <typename T1, typename T2>
-int seq_search_i(T1 v, T2 x, int l, int r) {
+template <typename T>
+int seq_search_i(std::vector<T> v, T x, int l, int r) {
     while (l <= r) {
         if (v[l] == x)
             return l;
@@ -38,8 +44,8 @@ int seq_search_i(T1 v, T2 x, int l, int r) {
     return -1;
 }
 
-template <typename T1, typename T2>
-int binary_search_r(T1 v, T2 x, int l, int r) {
+template <typename T>
+int binary_search_r(std::vector<T> v, T x, int l, int r) {
     int m = (r + l)/2;
 
     return (l > r) ? -1 :
@@ -47,8 +53,8 @@ int binary_search_r(T1 v, T2 x, int l, int r) {
             v[m] < x ? binary_search_r(v, x, m+1, r) : m;
 }
 
-template <typename T1, typename T2>
-int binary_search_i(T1 v, T2 x, int l, int r) {
+template <typename T>
+int binary_search_i(std::vector<T> v, T x, int l, int r) {
     while (l <= r) {
         int m = (r + l)/2;
         if (v[m] == x)
@@ -62,8 +68,8 @@ int binary_search_i(T1 v, T2 x, int l, int r) {
     return -1;
 }
 
-template <typename T1, typename T2>
-int ternary_search_r(T1 v, T2 x, int l, int r) {
+template <typename T>
+int ternary_search_r(std::vector<T> v, T x, int l, int r) {
     int m1 = (r+l+l)/3, m2 = (r+r+l)/3;
 
     return (l > r) ? -1 :
@@ -73,8 +79,8 @@ int ternary_search_r(T1 v, T2 x, int l, int r) {
                     x < v[m1] ? ternary_search_r(v, x, l, m1-1) : ternary_search_r(v, x, m1+1, m2-1);
 }
 
-template <typename T1, typename T2>
-int ternary_search_i(T1 v, T2 x, int l, int r) {
+template <typename T>
+int ternary_search_i(std::vector<T> v, T x, int l, int r) {
     while (l <= r) {
         int m1 = (r+l+l)/3, m2 = (r+r+l)/3;
         if (v[m1] == x)
@@ -92,16 +98,16 @@ int ternary_search_i(T1 v, T2 x, int l, int r) {
     return -1;
 }
 
-template <typename T1, typename T2>
-int mixed_search_nth(T1 v, T2 x, int l, int r, int k, int (*mixed_search)(T1, T2, int, int)) {
+template <typename T>
+int mixed_search_nth(std::vector<T> v, T x, int l, int r, int k, int (*mixed_search)(std::vector<T>, T, int, int)) {
     int result = l-1;
     for (int i = 0; i <= k; i++)
         result = mixed_search(v, x, result+1, r);
     return result;
 }
 
-template <typename T1, typename T2>
-int sorted_search_nth(T1 v, T2 x, int l, int r, int k, int (*sorted_search)(T1, T2, int, int)) {
+template <typename T>
+int sorted_search_nth(std::vector<T> v, T x, int l, int r, int k, int (*sorted_search)(std::vector<T>, T, int, int)) {
     int first_result = sorted_search(v, x, l, r);
     while (first_result > 0 && v[first_result-1] == x)
         first_result--;
@@ -109,8 +115,8 @@ int sorted_search_nth(T1 v, T2 x, int l, int r, int k, int (*sorted_search)(T1, 
 }
 
 // Fill a vector with random numbers in the range [l -> lower, u -> upper]
-template <typename T1, typename T2>
-void randomFill(T1 &v, const T2 l, const T2 u, const unsigned int seed, const int s) {
+template <typename T>
+void randomFill(std::vector<T> &v, const T l, const T u, const unsigned int seed, const int s) {
     // use the default random engine and an uniform distribution
     std::default_random_engine eng(seed);
     std::uniform_real_distribution<double> distr(l, u);
@@ -120,14 +126,13 @@ void randomFill(T1 &v, const T2 l, const T2 u, const unsigned int seed, const in
         v[i] = distr(eng);
 }
 
-template <typename T1, typename T2>
-long double time_measurement(int n, int (*f)(T1, T2, int, int), T1 v, T2 x, int r, int l) {
+template <typename T>
+long double time_measurement(int n, int (*f)(std::vector<T>, T, int, int), std::vector<T> v, T x, int r, int l) {
     long double time = 0;
     for (int i = 0; i < n; i++) {
         auto s = std::chrono::steady_clock::now();
         f(v, x, r, l);
         auto e = std::chrono::steady_clock::now();
-        //auto diff = e - s;
         auto diff = std::chrono::duration <double, std::milli> (e-s).count();
 
         time += (diff - time)/(i+1);
@@ -135,14 +140,13 @@ long double time_measurement(int n, int (*f)(T1, T2, int, int), T1 v, T2 x, int 
     return time;
 }
 
-template <typename T1, typename T2>
-long double time_measurement_nth(int n, int (*f)(T1, T2, int, int, int, int (*)(T1, T2, int, int)), T1 v, T2 x, int r, int l, int k, int (*f2)(T1, T2, int, int)) {
+template <typename T>
+long double time_measurement_nth(int n, int (*f)(std::vector<T>, T, int, int, int, int (*)(std::vector<T>, T, int, int)), std::vector<T> v, T x, int r, int l, int k, int (*f2)(std::vector<T>, T, int, int)) {
     long double time = 0;
     for (int i = 0; i < n; i++) {
         auto s = std::chrono::steady_clock::now();
         f(v, x, r, l, k, f2);
         auto e = std::chrono::steady_clock::now();
-        //auto diff = e - s;
         auto diff = std::chrono::duration <double, std::milli> (e-s).count();
 
         time += (diff - time)/(i+1);

@@ -10,48 +10,48 @@ template <typename T>
 int compare(T, T);
 
 // Wrappers
-template <typename T1, typename T2>
-int wrapper_std_search(T1, T2, int, int);
+template <typename T>
+int wrapper_std_search(std::vector<T>, T, int, int);
 
-template <typename T1, typename T2>
-int wrapper_std_bsearch(T1, T2, int, int);
+template <typename T>
+int wrapper_std_bsearch(std::vector<T>, T, int, int);
 
 // Search Functions
-template <typename T1, typename T2>
-int seq_search_r(T1, T2, int, int);
+template <typename T>
+int seq_search_r(std::vector<T>, T, int, int);
 
-template <typename T1, typename T2>
-int seq_search_i(T1, T2, int, int);
+template <typename T>
+int seq_search_i(std::vector<T>, T, int, int);
 
-template <typename T1, typename T2>
-int binary_search_r(T1, T2, int, int);
+template <typename T>
+int binary_search_r(std::vector<T>, T, int, int);
 
-template <typename T1, typename T2>
-int binary_search_i(T1, T2, int, int);
+template <typename T>
+int binary_search_i(std::vector<T>, T, int, int);
 
-template <typename T1, typename T2>
-int ternary_search_r(T1, T2, int, int);
+template <typename T>
+int ternary_search_r(std::vector<T>, T, int, int);
 
-template <typename T1, typename T2>
-int ternary_search_i(T1, T2, int, int);
+template <typename T>
+int ternary_search_i(std::vector<T>, T, int, int);
 
 // Search the nth element
-template <typename T1, typename T2>
-int mixed_search_nth(T1, T2, int, int, int, int (*)(T1, T2, int, int));
+template <typename T>
+int mixed_search_nth(std::vector<T>, T, int, int, int, int (*)(std::vector<T>, T, int, int));
 
-template <typename T1, typename T2>
-int sorted_search_nth(T1, T2, int, int, int, int (*)(T1, T2, int, int));
+template <typename T>
+int sorted_search_nth(std::vector<T>, T, int, int, int, int (*)(std::vector<T>, T, int, int));
 
 // Random Fill
-template <typename T1, typename T2>
-void randomFill(T1 &, const T2, const T2, const unsigned int, const int);
+template <typename T>
+void randomFill(std::vector<T> &, const T, const T, const unsigned int, const int);
 
 // Time Measurement
-template <typename T1, typename T2>
-long double time_measurement(int, int (*)(T1, T2, int, int), T1, T2, int, int);
+template <typename T>
+long double time_measurement(int, int (*)(std::vector<T>, T, int, int), std::vector<T>, T, int, int);
 
-template <typename T1, typename T2>
-long double time_measurement_nth(int, int (*)(T1, T2, int, int, int, int (*)(T1, T2, int, int)), T1, T2, int, int, int, int (*)(T1, T2, int, int));
+template <typename T>
+long double time_measurement_nth(int, int (*)(std::vector<T>, T, int, int, int, int (*)(std::vector<T>, T, int, int)), std::vector<T>, T, int, int, int, int (*)(std::vector<T>, T, int, int));
 
 #include "search.inl"
 
