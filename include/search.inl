@@ -124,11 +124,12 @@ void randomFill(std::vector<T> &v, const T l, const T u, const unsigned int seed
 }
 
 template <typename T>
-long double time_measurement(int n, int (*f)(std::vector<T>, T, int, int), std::vector<T> v, T x, int r, int l) {
+long double time_measurement(int n, int (*f)(std::vector<T>, T, int, int), T x, std::vector<long int>::const_iterator it, int l, int r) {
     long double time = 0;
+    std::vector<long int> v(it+l, it+r);
     for (int i = 0; i < n; i++) {
         auto s = std::chrono::steady_clock::now();
-        f(v, x, r, l);
+        f(v, x, l, r);
         auto e = std::chrono::steady_clock::now();
         auto diff = std::chrono::duration <double, std::milli> (e-s).count();
 
