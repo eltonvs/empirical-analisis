@@ -110,7 +110,7 @@ int sorted_search_nth(T1 v, T2 x, int l, int r, int k, int (*sorted_search)(T1, 
 
 // Fill a vector with random numbers in the range [l -> lower, u -> upper]
 template <typename T1, typename T2>
-void randomFill(T1 *&v, const T2 l, const T2 u, const unsigned int seed, const int s) {
+void randomFill(T1 &v, const T2 l, const T2 u, const unsigned int seed, const int s) {
     // use the default random engine and an uniform distribution
     std::default_random_engine eng(seed);
     std::uniform_real_distribution<double> distr(l, u);
