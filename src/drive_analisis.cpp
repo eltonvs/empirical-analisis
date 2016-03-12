@@ -81,7 +81,7 @@ int main(int argc, char *argv[]) {
     // Tests with the mixed array
     for (auto n(16u); n < arrSz; n *= 2) {
         // Update third quartile with the new size
-        third_quartile = *(V+3*n/4);  // 3/4 lenght
+        third_quartile = V[3*n/4];  // 3/4 lenght
 
         // Show message with n
         std::cout << "Mixed - Using n = " << n << " for this run\n";
@@ -104,7 +104,7 @@ int main(int argc, char *argv[]) {
     // Tests with the sorted array
     for (auto n(16u); n < arrSz; n *= 2) {
         // Update third quartile with the new size
-        third_quartile = *(V+3*n/4);  // 3/4 lenght
+        third_quartile = V[3*n/4];  // 3/4 lenght
 
         // Show message with n
         std::cout << "\nSorted - Using n = " << n << " for this run\n";
