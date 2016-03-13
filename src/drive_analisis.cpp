@@ -61,14 +61,14 @@ int main(int argc, char *argv[]) {
 
     // This will be used to save (folder name)
     std::string functions_name[] = {
-        "wrapper_std_search()",
-        "seq_search_r()",
-        "seq_search_i()",
-        "wrapper_std_bsearch()",
-        "binary_search_r()",
-        "binary_search_i()",
-        "ternary_search_r()",
-        "ternary_search_i()",
+        "wrapper_std_search",
+        "seq_search_r",
+        "seq_search_i",
+        "wrapper_std_bsearch",
+        "binary_search_r",
+        "binary_search_i",
+        "ternary_search_r",
+        "ternary_search_i",
     };
 
     // Define numbers to search in array
