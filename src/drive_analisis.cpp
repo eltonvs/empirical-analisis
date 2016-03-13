@@ -72,12 +72,17 @@ int main(int argc, char *argv[]) {
     };
 
     // Create array of files (8 functions with 3 "cases")
-    std::ofstream files[8][3];
+    std::ofstream files[11][3];
 
     for (int i = 0; i < 8; i++) {
         files[i][0].open("results/" + functions_name[i] + "/worst_case.dat");
         files[i][1].open("results/" + functions_name[i] + "/third_quartile.dat");
         files[i][2].open("results/" + functions_name[i] + "/third_occurrence.dat");
+    }
+    for (int i = 8; i < 11; i++) {
+        files[i][0].open("results/" + functions_name[i-8] + "/mixed_worst_case.dat");
+        files[i][1].open("results/" + functions_name[i-8] + "/mixed_third_quartile.dat");
+        files[i][2].open("results/" + functions_name[i-8] + "/mixed_third_occurrence.dat");
     }
 
     // Define numbers to search in array
@@ -104,9 +109,9 @@ int main(int argc, char *argv[]) {
             //std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], worst_case, V.begin(), 0, n-1) << '\n';
             //std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], third_quartile, V.begin(), 0, n-1) << '\n';
             //std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V.begin(), 0, n-1, 2, functions[i]) << '\n';
-            time_measurement(N_EXEC, functions[i], worst_case, V.begin(), 0, n-1);
-            time_measurement(N_EXEC, functions[i], third_quartile, V.begin(), 0, n-1);
-            time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V.begin(), 0, n-1, 2, functions[i]);
+            files[i+8][0] << n << "\t" << time_measurement(N_EXEC, functions[i], worst_case, V.begin(), 0, n-1) << "\n";
+            files[i+8][1] << n << "\t" << time_measurement(N_EXEC, functions[i], third_quartile, V.begin(), 0, n-1) << "\n";
+            files[i+8][2] << n << "\t" << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V.begin(), 0, n-1, 2, functions[i]) << "\n";
         }
     }
 
