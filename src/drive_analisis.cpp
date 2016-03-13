@@ -104,9 +104,9 @@ int main(int argc, char *argv[]) {
             //std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], worst_case, V.begin(), 0, n-1) << '\n';
             //std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], third_quartile, V.begin(), 0, n-1) << '\n';
             //std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V.begin(), 0, n-1, 2, functions[i]) << '\n';
-            time_measurement(N_EXEC, functions[i], worst_case, V.begin(), 0, n-1);
-            time_measurement(N_EXEC, functions[i], third_quartile, V.begin(), 0, n-1);
-            time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V.begin(), 0, n-1, 2, functions[i]);
+            file[i][0] << n << "/t" << time_measurement(N_EXEC, functions[i], worst_case, V.begin(), 0, n-1) << "/n";
+            file[i][1] << n << "/t" << time_measurement(N_EXEC, functions[i], third_quartile, V.begin(), 0, n-1) << "/n";
+            file[i][2] << n << "/t" << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V.begin(), 0, n-1, 2, functions[i]) << "/n";
         }
     }
 
