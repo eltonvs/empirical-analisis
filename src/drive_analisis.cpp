@@ -71,6 +71,15 @@ int main(int argc, char *argv[]) {
         "ternary_search_i",
     };
 
+    // Create array of files (8 functions with 3 "cases")
+    std::ofstream files[8][3];
+
+    for (int i = 0; i < 8; i++) {
+        files[i][0].open("results/" + functions_name[i] + "/worst_case.dat");
+        files[i][1].open("results/" + functions_name[i] + "/third_quartile.dat");
+        files[i][2].open("results/" + functions_name[i] + "/third_occurrence.dat");
+    }
+
     // Define numbers to search in array
     long int worst_case = upper + 1;  // inexistent value
     long int third_quartile;          // 3/4 lenght
