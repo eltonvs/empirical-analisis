@@ -4,7 +4,6 @@
 #include <algorithm>  // To std:sort()
 #include <fstream>    // To files i/o
 #include <sstream>    // To convert args
-#include <vector>     // To use vectors
 #include <string>     // To use strings
 
 #include "search.h"
@@ -41,7 +40,8 @@ int main(int argc, char *argv[]) {
     arrSz = pow(2, arrSz);
 
     // Create vector
-    std::vector<long int> V(arrSz);
+    long int *V;
+    V = new long int[arrSz];
 
     // To randomFill
     long int lower = -9876543210, upper = 9876543210;
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
     // Tests with the mixed array
     for (auto n(16u); n < arrSz; n *= 2) {
         // Update third quartile with the new size
-        third_quartile = V[3*n/4];  // 3/4 lenght
+        third_quartile = *(V+3*n/4);  // 3/4 lenght
 
         // Show message with n
         std::cout << "\nMixed - Using n = " << n << " for this run\n";
@@ -121,7 +121,7 @@ int main(int argc, char *argv[]) {
     // Tests with the sorted array
     for (auto n(16u); n < arrSz; n *= 2) {
         // Update third quartile with the new size
-        third_quartile = V[3*n/4];  // 3/4 lenght
+        third_quartile = *(V+3*n/4);  // 3/4 lenght
 
         // Show message with n
         std::cout << "\nSorted - Using n = " << n << " for this run\n";
