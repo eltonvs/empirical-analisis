@@ -26,7 +26,7 @@
  - [x] Criar uma nova função para chamar as funções std::search e std::bsearch
 - [x] Armazenar as 8 funções (item 5) em um vetor de ponteiros para função (por isso o wrapper), com a mesma assinatura
 - [x] Receber por linha de comando um valor k, limite de amostras a serem testadas (num_Amostras = 2^i, com i ∈ [5, k+5])
-- [ ] Gerar um arquivo .dat com os dados para serem plotados no gnuplot
+- [x] Gerar um arquivo .dat com os dados para serem plotados no gnuplot
 - [x] Armazenar o valor de 100 execuções para cada instância (gerando a média progressiva)
 - [x] Não alocar os vetores a cada execução, mas alocar uma unica vez com o tamanho máximo
 - [ ] Gerar um gráfico (n x tempo) para cada algoritmo
