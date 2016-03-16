@@ -2,7 +2,7 @@
 #include <cstdlib>    // To std::bsearch
 #include <chrono>     // To time measurement
 #include <random>     // To generate random numbers
-#include "search.h"
+#include "search_2.h"
 
 template <typename T>
 int compare(T a, T b) {
