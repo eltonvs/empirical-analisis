@@ -13,34 +13,9 @@ int compare(T, T);
 template <typename T>
 int wrapper_std_search(std::vector<T>, T, int, int);
 
-template <typename T>
-int wrapper_std_bsearch(std::vector<T>, T, int, int);
-
-// Search Functions
-template <typename T>
-int seq_search_r(std::vector<T>, T, int, int);
-
-template <typename T>
-int seq_search_i(std::vector<T>, T, int, int);
-
-template <typename T>
-int binary_search_r(std::vector<T>, T, int, int);
-
-template <typename T>
-int binary_search_i(std::vector<T>, T, int, int);
-
-template <typename T>
-int ternary_search_r(std::vector<T>, T, int, int);
-
-template <typename T>
-int ternary_search_i(std::vector<T>, T, int, int);
-
 // Search the nth element
 template <typename T>
 int mixed_search_nth(std::vector<T>, T, int, int, int, int (*)(std::vector<T>, T, int, int));
-
-template <typename T>
-int sorted_search_nth(std::vector<T>, T, int, int, int, int (*)(std::vector<T>, T, int, int));
 
 // Random Fill
 template <typename T>
