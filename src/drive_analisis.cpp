@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
     int seed = 2;
 
     // Create Functions Array
-    int (*functions[])(std::vector<long int>, long int, int, int) = {
+    int (*functions[])(long int *, long int, int, int) = {
         wrapper_std_search,
         seq_search_r,
         seq_search_i,
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
     // Tests with the mixed array
     for (auto n(16u); n < arrSz; n *= 2) {
         // Update third quartile with the new size
-        third_quartile = *(V+3*n/4);  // 3/4 lenght
+        third_quartile = V[3*n/4];  // 3/4 lenght
 
         // Show message with n
         std::cout << "\nMixed - Using n = " << n << " for this run\n";
@@ -105,18 +105,18 @@ int main(int argc, char *argv[]) {
             if (i == 1 && n >= 262144)
                 continue;
 
-            std::cout << ">>> Processing " << functions_name[i] << '\n';
-            //std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], worst_case, V.begin(), 0, n-1) << '\n';
-            //std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], third_quartile, V.begin(), 0, n-1) << '\n';
-            //std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V.begin(), 0, n-1, 2, functions[i]) << '\n';
-            files[i+8][0] << n << "\t" << time_measurement(N_EXEC, functions[i], worst_case, V.begin(), 0, n-1) << "\n";
-            files[i+8][1] << n << "\t" << time_measurement(N_EXEC, functions[i], third_quartile, V.begin(), 0, n-1) << "\n";
-            files[i+8][2] << n << "\t" << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V.begin(), 0, n-1, 2, functions[i]) << "\n";
+            //std::cout << ">>> Processing " << functions_name[i] << '\n';
+            //std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], worst_case, V, 0, n-1) << '\n';
+            //std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], third_quartile, V, 0, n-1) << '\n';
+            //std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V, 0, n-1, 2, functions[i]) << '\n';
+            files[i+8][0] << n << "\t" << time_measurement(N_EXEC, functions[i], worst_case, V, 0, n-1) << "\n";
+            files[i+8][1] << n << "\t" << time_measurement(N_EXEC, functions[i], third_quartile, V, 0, n-1) << "\n";
+            //files[i+8][2] << n << "\t" << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V, 0, n-1, 2, functions[i]) << "\n";
         }
     }
 
     // Sort array with the standard sort function.
-    std::sort(V.data(), V.data() + arrSz);
+    std::sort(V, V + arrSz);
 
     // Tests with the sorted array
     for (auto n(16u); n < arrSz; n *= 2) {
@@ -131,22 +131,20 @@ int main(int argc, char *argv[]) {
             if (i == 1 && n >= 262144)
                 continue;
 
-            std::cout << ">>> Processing " << functions_name[i] << '\n';
-            //std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], worst_case, V.begin(), 0, n-1) << '\n';
-            //std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], third_quartile, V.begin(), 0, n-1) << '\n';
-            //std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V.begin(), 0, n-1, 2, functions[i]) << '\n';
-            files[i][0] << n << "\t" << time_measurement(N_EXEC, functions[i], worst_case, V.begin(), 0, n-1) << "\n";
-            files[i][1] << n << "\t" << time_measurement(N_EXEC, functions[i], third_quartile, V.begin(), 0, n-1) << "\n";
-            files[i][2] << n << "\t" << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V.begin(), 0, n-1, 2, functions[i]) << "\n";
+            //std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], worst_case, V, 0, n-1) << '\n';
+            //std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], third_quartile, V, 0, n-1) << '\n';
+            //std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V, 0, n-1, 2, functions[i]) << '\n';
+            files[i][0] << n << "\t" << time_measurement(N_EXEC, functions[i], worst_case, V, 0, n-1) << "\n";
+            files[i][1] << n << "\t" << time_measurement(N_EXEC, functions[i], third_quartile, V, 0, n-1) << "\n";
+            //files[i][2] << n << "\t" << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V, 0, n-1, 2, functions[i]) << "\n";
         }
         for (int i = 3; i < 8; i++) {
-            std::cout << ">>> Processing " << functions_name[i] << '\n';
-            //std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], worst_case, V.begin(), 0, n-1) << '\n';
-            //std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], third_quartile, V.begin(), 0, n-1) << '\n';
-            //std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, sorted_search_nth, third_quartile, V.begin(), 0, n-1, 2, functions[i]) << '\n';
-            files[i][0] << n << "\t" << time_measurement(N_EXEC, functions[i], worst_case, V.begin(), 0, n-1) << "\n";
-            files[i][1] << n << "\t" << time_measurement(N_EXEC, functions[i], third_quartile, V.begin(), 0, n-1) << "\n";
-            files[i][2] << n << "\t" << time_measurement_nth(N_EXEC, sorted_search_nth, third_quartile, V.begin(), 0, n-1, 2, functions[i]) << "\n";
+            //std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], worst_case, V, 0, n-1) << '\n';
+            //std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], third_quartile, V, 0, n-1) << '\n';
+            //std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, sorted_search_nth, third_quartile, V, 0, n-1, 2, functions[i]) << '\n';
+            files[i][0] << n << "\t" << time_measurement(N_EXEC, functions[i], worst_case, V, 0, n-1) << "\n";
+            files[i][1] << n << "\t" << time_measurement(N_EXEC, functions[i], third_quartile, V, 0, n-1) << "\n";
+            files[i][2] << n << "\t" << time_measurement_nth(N_EXEC, sorted_search_nth, third_quartile, V, 0, n-1, 2, functions[i]) << "\n";
         }
     }
 
@@ -154,6 +152,9 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < 11; i++)
         for (int j = 0; j < 3; j++)
             files[i][j].close();
+
+    // Delete allocated pointer
+    delete[] V;
 
     return EXIT_SUCCESS;
 }

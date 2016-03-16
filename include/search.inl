@@ -10,29 +10,31 @@ int compare(T a, T b) {
 }
 
 template <typename T>
-int wrapper_std_search(T v, T x, int l, int r) {
+int wrapper_std_search(T *v, T x, int l, int r) {
     /* Not Working
     T needle[] = {x};
     std::vector<long int>::iterator i;
     i = std::search(v.begin()+l, v.begin()+r, needle, needle+1);
 
     return (i != v.begin()+r) ? i - (v.begin()+l) : -1;
-*/}
-
-template <typename T>
-int wrapper_std_bsearch(T v, T x, int l, int r) {
-    T *a = (T *)bsearch(&x, v.data()+l, r-l+1, sizeof(T), compare);
-    return a == 0 ? -1 : a-v.data();
+    */
+    return 0;
 }
 
 template <typename T>
-int seq_search_r(T v, T x, int l, int r) {
+int wrapper_std_bsearch(T *v, T x, int l, int r) {
+    T *a = (T *)bsearch(&x, v+l, r-l+1, sizeof(T), compare);
+    return a == 0 ? -1 : a-v;
+}
+
+template <typename T>
+int seq_search_r(T *v, T x, int l, int r) {
     return (l > r) ? -1 :
         *(v+1) == x ? l : seq_search_r(v, x, l+1, r);
 }
 
 template <typename T>
-int seq_search_i(T v, T x, int l, int r) {
+int seq_search_i(T *v, T x, int l, int r) {
     while (l <= r) {
         if (*(v+1) == x)
             return l;
@@ -43,7 +45,7 @@ int seq_search_i(T v, T x, int l, int r) {
 }
 
 template <typename T>
-int binary_search_r(T v, T x, int l, int r) {
+int binary_search_r(T *v, T x, int l, int r) {
     int m = (r + l)/2;
 
     return (l > r) ? -1 :
@@ -52,7 +54,7 @@ int binary_search_r(T v, T x, int l, int r) {
 }
 
 template <typename T>
-int binary_search_i(T v, T x, int l, int r) {
+int binary_search_i(T *v, T x, int l, int r) {
     while (l <= r) {
         int m = (r + l)/2;
         if (*(v+m) == x)
@@ -67,7 +69,7 @@ int binary_search_i(T v, T x, int l, int r) {
 }
 
 template <typename T>
-int ternary_search_r(T v, T x, int l, int r) {
+int ternary_search_r(T *v, T x, int l, int r) {
     int m1 = (r+l+l)/3, m2 = (r+r+l)/3;
 
     return (l > r) ? -1 :
@@ -78,7 +80,7 @@ int ternary_search_r(T v, T x, int l, int r) {
 }
 
 template <typename T>
-int ternary_search_i(T v, T x, int l, int r) {
+int ternary_search_i(T *v, T x, int l, int r) {
     while (l <= r) {
         int m1 = (r+l+l)/3, m2 = (r+r+l)/3;
         if (*(v+m1) == x)
@@ -97,15 +99,15 @@ int ternary_search_i(T v, T x, int l, int r) {
 }
 
 template <typename T>
-int mixed_search_nth(T v, T x, int l, int r, int k, int (*mixed_search)(T, T, int, int)) {
+int mixed_search_nth(T *v, T x, int l, int r, int k, int (*mixed_search)(T *, T, int, int)) {
     int result = l-1;
-    for (int i = 0; i <= k || !(i > 0 && -1 == result); i++)
+    for (int i = 0; i <= k || !(i > 0 && l-1 == result); i++)
         result = mixed_search(v, x, result+1, r);
     return result;
 }
 
 template <typename T>
-int sorted_search_nth(T v, T x, int l, int r, int k, int (*sorted_search)(T, T, int, int)) {
+int sorted_search_nth(T *v, T x, int l, int r, int k, int (*sorted_search)(T *, T, int, int)) {
     int first_result = sorted_search(v, x, l, r);
     while (first_result > 0 && *(v+first_result-1) == x)
         first_result--;
@@ -125,9 +127,8 @@ void randomFill(T *&v, const T l, const T u, const unsigned int seed, const int 
 }
 
 template <typename T>
-long double time_measurement(int n, int (*f)(T, T, int, int), T x, T it, int l, int r) {
+long double time_measurement(int n, int (*f)(T *, T, int, int), T x, T *v, int l, int r) {
     long double time = 0;
-    std::vector<long int> v(it+l, it+r);
     for (int i = 0; i < n; i++) {
         auto s = std::chrono::steady_clock::now();
         f(v, x, l, r);
@@ -140,9 +141,8 @@ long double time_measurement(int n, int (*f)(T, T, int, int), T x, T it, int l, 
 }
 
 template <typename T>
-long double time_measurement_nth(int n, int (*f)(T, T, int, int, int, int (*)(T, T, int, int)), T x, T it, int l, int r, int k, int (*f2)(T, T, int, int)) {
+long double time_measurement_nth(int n, int (*f)(T *, T, int, int, int, int (*)(T *, T, int, int)), T x, T *v, int l, int r, int k, int (*f2)(T *, T, int, int)) {
     long double time = 0;
-    std::vector<long int> v(it+l, it+r);
     for (int i = 0; i < n; i++) {
         auto s = std::chrono::steady_clock::now();
         f(v, x, l, r, k, f2);
