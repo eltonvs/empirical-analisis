@@ -6,7 +6,7 @@ set key left nobox
 set term png
 set output "graphs/mixed_wrapper_std_bsearch.png"# Arquivo (jpg, no caso) de saída
 #set key right bottom
-plot 'wrapper_std_bsearch/mixed_third_occurrence.dat' with lines title 'terceira ocorrencia','wrapper_std_bsearch/mixed_third_quartile.dat' with lines title '3/4', 'wrapper_std_bsearch/mixed_worst_case.dat' with lines title 'pior caso' #, ... quantos quiser
+plot 'wrapper_std_bsearch/third_occurrence.dat' with lines title 'terceira ocorrencia','wrapper_std_bsearch/third_quartile.dat' with lines title '3/4', 'wrapper_std_bsearch/worst_case.dat' with lines title 'pior caso' #, ... quantos quiser
 
 # Pra facilitar sua vida:
 # se n tiver, instale o Package Control no seu sublime
