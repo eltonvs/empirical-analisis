@@ -28,6 +28,6 @@ long double time_measurement(int, int (*)(std::vector<T>, T, int, int), T, std::
 template <typename T>
 long double time_measurement_nth(int, int (*)(std::vector<T>, T, int, int, int, int (*)(std::vector<T>, T, int, int)), T, std::vector<long int>::const_iterator, int, int, int, int (*)(std::vector<T>, T, int, int));
 
-#include "search_2.inl"
+#include "search_std_search.inl"
 
 #endif

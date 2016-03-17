@@ -2,7 +2,7 @@
 #include <cstdlib>    // To std::bsearch
 #include <chrono>     // To time measurement
 #include <random>     // To generate random numbers
-#include "search_2.h"
+#include "search_std_search.h"
 
 template <typename T>
 int wrapper_std_search(std::vector<T> v, T x, int l, int r) {
