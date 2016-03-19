@@ -49,7 +49,6 @@ int main(int argc, char *argv[]) {
 
     // Create Functions Array
     int (*functions[])(long int *, long int, int, int) = {
-        wrapper_std_search,
         seq_search_r,
         seq_search_i,
         wrapper_std_bsearch,
@@ -61,7 +60,6 @@ int main(int argc, char *argv[]) {
 
     // This will be used to save (folder name)
     std::string functions_name[] = {
-        "wrapper_std_search",
         "seq_search_r",
         "seq_search_i",
         "wrapper_std_bsearch",
@@ -72,14 +70,14 @@ int main(int argc, char *argv[]) {
     };
 
     // Create array of files (8 functions with 3 "cases")
-    std::ofstream files[11][3];
+    std::ofstream files[9][3];
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 7; i++) {
         files[i][0].open("results/" + functions_name[i] + "/worst_case.dat");
         files[i][1].open("results/" + functions_name[i] + "/third_quartile.dat");
         files[i][2].open("results/" + functions_name[i] + "/third_occurrence.dat");
     }
-    for (int i = 8; i < 11; i++) {
+    for (int i = 7; i < 9; i++) {
         files[i][0].open("results/" + functions_name[i-8] + "/mixed_worst_case.dat");
         files[i][1].open("results/" + functions_name[i-8] + "/mixed_third_quartile.dat");
         files[i][2].open("results/" + functions_name[i-8] + "/mixed_third_occurrence.dat");
@@ -100,18 +98,18 @@ int main(int argc, char *argv[]) {
         // Show message with n
         std::cout << "\nMixed - Using n = " << n << " for this run\n";
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             // seq_search_r() limits (Recursion Limit)
-            if (i == 1 && n >= 262144)
+            if (i == 0 && n >= 262144)
                 continue;
 
             //std::cout << ">>> Processing " << functions_name[i] << '\n';
             //std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], worst_case, V, 0, n-1) << '\n';
             //std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], third_quartile, V, 0, n-1) << '\n';
             //std::cout << std::fixed << "KE = " << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V, 0, n-1, 2, functions[i]) << '\n';
-            files[i+8][0] << std::fixed << n << "\t" << time_measurement(N_EXEC, functions[i], worst_case, V, 0, n-1) << "\n";
-            files[i+8][1] << std::fixed << n << "\t" << time_measurement(N_EXEC, functions[i], third_quartile, V, 0, n-1) << "\n";
-            files[i+8][2] << std::fixed << n << "\t" << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V, 0, n-1, 2, functions[i]) << "\n";
+            files[i+7][0] << std::fixed << n << "\t" << time_measurement(N_EXEC, functions[i], worst_case, V, 0, n-1) << "\n";
+            files[i+7][1] << std::fixed << n << "\t" << time_measurement(N_EXEC, functions[i], third_quartile, V, 0, n-1) << "\n";
+            files[i+7][2] << std::fixed << n << "\t" << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V, 0, n-1, 2, functions[i]) << "\n";
         }
     }
 
@@ -126,9 +124,9 @@ int main(int argc, char *argv[]) {
         // Show message with n
         std::cout << "\nSorted - Using n = " << n << " for this run\n";
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             // seq_search_r() limits (Recursion Limit)
-            if (i == 1 && n >= 262144)
+            if (i == 0 && n >= 262144)
                 continue;
 
             //std::cout << ">>> Processing " << functions_name[i] << '\n';
@@ -139,7 +137,7 @@ int main(int argc, char *argv[]) {
             files[i][1] << std::fixed << n << "\t" << time_measurement(N_EXEC, functions[i], third_quartile, V, 0, n-1) << "\n";
             files[i][2] << std::fixed << n << "\t" << time_measurement_nth(N_EXEC, mixed_search_nth, third_quartile, V, 0, n-1, 2, functions[i]) << "\n";
         }
-        for (int i = 3; i < 8; i++) {
+        for (int i = 2; i < 7; i++) {
             //std::cout << ">>> Processing " << functions_name[i] << '\n';
             //std::cout << std::fixed << "WC = " << time_measurement(N_EXEC, functions[i], worst_case, V, 0, n-1) << '\n';
             //std::cout << std::fixed << "TQ = " << time_measurement(N_EXEC, functions[i], third_quartile, V, 0, n-1) << '\n';
@@ -151,7 +149,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Close Opened files
-    for (int i = 0; i < 11; i++)
+    for (int i = 0; i < 9; i++)
         for (int j = 0; j < 3; j++)
             files[i][j].close();
 

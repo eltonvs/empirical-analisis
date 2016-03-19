@@ -10,18 +10,6 @@ int compare(T a, T b) {
 }
 
 template <typename T>
-int wrapper_std_search(T *v, T x, int l, int r) {
-    /* Not Working
-    T needle[] = {x};
-    std::vector<long int>::iterator i;
-    i = std::search(v.begin()+l, v.begin()+r, needle, needle+1);
-
-    return (i != v.begin()+r) ? i - (v.begin()+l) : -1;
-    */
-    return 0;
-}
-
-template <typename T>
 int wrapper_std_bsearch(T *v, T x, int l, int r) {
     T *a = (T *)bsearch(&x, v+l, r-l+1, sizeof(T), compare);
     return a == 0 ? -1 : a-v;
@@ -47,7 +35,6 @@ int seq_search_i(T *v, T x, int l, int r) {
 template <typename T>
 int binary_search_r(T *v, T x, int l, int r) {
     int m = (r + l)/2;
-
     return (l > r) ? -1 :
         *(v+m) > x ? binary_search_r(v, x, l, m-1) :
             *(v+m) < x ? binary_search_r(v, x, m+1, r) : m;
@@ -64,19 +51,18 @@ int binary_search_i(T *v, T x, int l, int r) {
         else
             r = m-1;
     }
-
     return -1;
 }
 
 template <typename T>
 int ternary_search_r(T *v, T x, int l, int r) {
     int m1 = (r+l+l)/3, m2 = (r+r+l)/3;
-
     return (l > r) ? -1 :
         x == *(v+m1) ? m1 :
             x == *(v+m2) ? m2 :
                 x > *(v+m2) ? ternary_search_r(v, x, m2+1, r) :
-                    x < *(v+m1) ? ternary_search_r(v, x, l, m1-1) : ternary_search_r(v, x, m1+1, m2-1);
+                    x < *(v+m1) ? ternary_search_r(v, x, l, m1-1) :
+                        ternary_search_r(v, x, m1+1, m2-1);
 }
 
 template <typename T>
@@ -94,7 +80,6 @@ int ternary_search_i(T *v, T x, int l, int r) {
         else
             l = m1+1, r = m2-1;
     }
-
     return -1;
 }
 
